@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Topic::class);    // 一对多关系
     }
+
+    public function isAuthorOf($model)
+    {
+        return $this->id == $model->user_id;    // 检查模型对应的user_id是否是当前登录系统的id
+    }
 }

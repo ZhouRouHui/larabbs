@@ -21,6 +21,8 @@ class TopicObserver
 
     public function saving(Topic $topic)
     {
+    	$topic->body = clean($topic->body, 'user_topic_body');	// 对用户提交的数据进行安全过滤
+
         $topic->excerpt = make_excerpt($topic->body);
     }
 }

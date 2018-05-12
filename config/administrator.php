@@ -77,7 +77,12 @@ return array(
      *      'Analytics' => ['E-Commerce' => 'page.pages.analytics'],
      *  ]
      */
-    'menu' => [],
+    // 'menu' => [],
+    'menu' => [
+        '用户与权限' => [
+            'users',
+        ],
+    ],
 
     /*
      * The permission option is the highest-level authentication check that lets you define a closure that should return true if the current user

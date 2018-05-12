@@ -64,4 +64,37 @@ class User extends Authenticatable
         $this->save();
         $this->unreadNotifications->markAsRead();
     }
+
+    /**
+     * Eloquent 修改器 
+     *在 Eloquent 模型实例中获取或设置某些属性值的时候，访问器和修改器允许你对 Eloquent 属性值进行格式化。
+     * 有两种方法可以修改 Eloquent 模型属性的值，一种是『访问器』，另一种是『修改器』。
+     * 访问器和修改器最大的区别是『发生修改的时机』，访问器是 访问属性时 修改，
+     * 修改器是在 写入数据库前 修改。修改器是数据持久化，访问器是临时修改。
+     * 访问器的使用场景是当数据因为特殊原因存在不一致性时，可以使用访问器进行矫正处理。
+     * 在我们的密码加密的场景里，我们会使用修改器在密码即将入库前，对其进行加密。
+     */
+    public function setPasswordAttribute($value)
+    {
+        // 如果值的长度等于 60，即认为是已经做过加密的情况
+        if (strlen($value) != 60) {
+
+            // 不等于 60，做密码加密处理
+            $value = bcrypt($value);
+        }
+
+        $this->attributes['password'] = $value;
+    }
+
+    public function setAvatarAttribute($path)
+    {
+        // 如果不是 `http` 子串开头，那就是从后台上传的，需要补全 URL
+        if ( ! starts_with($path, 'http')) {
+
+            // 拼接完整的 URL
+            $path = config('app.url') . "/uploads/images/avatars/$path";
+        }
+
+        $this->attributes['avatar'] = $path;
+    }
 }

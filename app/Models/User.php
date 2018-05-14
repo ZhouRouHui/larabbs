@@ -9,7 +9,8 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Traits\ActiveUserHelper;
+    use Traits\LastActivedAtHelper; // 用户最后活跃时间 trait
+    use Traits\ActiveUserHelper;    // 活跃用户 trait
     use HasRoles;   // 使用 laravel-permission 提供的 Trait —— HasRoles，此举能让我们获取到扩展包提供的所有权限和角色的操作方法
     use Notifiable {
         notify as protected laravelNotify;

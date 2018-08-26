@@ -14,8 +14,12 @@ return [
      |
      */
 
-    //'enabled' => env('DEBUGBAR_ENABLED', null),
-    'enabled' => env('APP_DEBUG', false),
+    // 文件 enabled 初始配置
+    // 'enabled' => env('DEBUGBAR_ENABLED', null),
+    // 网页开发时 
+    // 'enabled' => env('APP_DEBUG', false),
+    // API开发时 
+    'enabled' => env('DEBUGBAR_ENABLED', false),
     'except' => [
         //
     ],

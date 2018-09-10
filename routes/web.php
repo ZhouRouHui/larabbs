@@ -11,6 +11,11 @@
 |
 */
 
+/**
+ * put 替换某个资源，需提供完整的资源信息
+ * patch 部分修改资源，提供部分资源信息
+ */
+
 Route::get('/', 'TopicsController@index')->name('root');
 
 

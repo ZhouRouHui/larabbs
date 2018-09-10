@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Auth;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Traits\LastActivedAtHelper; // 用户最后活跃时间 trait
     use Traits\ActiveUserHelper;    // 活跃用户 trait
@@ -98,5 +99,17 @@ class User extends Authenticatable
         }
 
         $this->attributes['avatar'] = $path;
+    }
+
+    // Rest omitted for brevity
+    // 返回了 User 的 id
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+    // 我们需要额外在 JWT 载荷中增加的自定义内容，这里返回空数组
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }

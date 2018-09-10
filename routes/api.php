@@ -40,7 +40,16 @@ $api->version('v1', [
             ->name('api.captchas.store'); 
         // 第三方登录
         $api->post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore')
-            ->name('api.socials.authorizations.store');       
+            ->name('api.socials.authorizations.store');   
+        // 登录
+        $api->post('authorizations', 'AuthorizationsController@store')
+            ->name('api.authorizations.store');   
+        // 刷新token
+        $api->put('authorizations/current', 'AuthorizationsController@update')
+            ->name('api.authorizations.update');
+        // 删除token，适用于用户退出app
+        $api->delete('authorizations/current', 'AuthorizationsController@destroy')
+            ->name('api.authorizations.destroy'); 
     });
 });
 

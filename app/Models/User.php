@@ -15,7 +15,7 @@ class User extends Authenticatable implements JWTSubject
     use HasRoles;   // 使用 laravel-permission 提供的 Trait —— HasRoles，此举能让我们获取到扩展包提供的所有权限和角色的操作方法
     use Notifiable {
         notify as protected laravelNotify;
-    }
+    } 
 
     public function notify($instance)
     {

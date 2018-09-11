@@ -118,9 +118,12 @@ $api->version('v1', [
             // 通知统计
             $api->get('user/notifications/stats', 'NotificationsController@stats')
                 ->name('api.user.notifications.stats');
-            // 标记消息通知为已读
+            // 标记消  息通知为已读
             $api->patch('user/read/notifications', 'NotificationsController@read')
                 ->name('api.user.notifications.read');
+            // 当前登录用户权限
+            $api->get('user/permissions', 'PermissionsController@index')
+                ->name('api.user.permissions.index');
         });
     });
 });

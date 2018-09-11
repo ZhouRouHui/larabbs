@@ -10,7 +10,12 @@ use App\Models\Image;
 
 class UsersController extends Controller
 {
-    //
+    // 活跃用户
+    public function activedIndex(User $user)
+    {
+        return $this->response->collection($user->getActiveUsers(), new UserTransformer());
+    }
+
     public function store(UserRequest $request)
     {
         // 取出缓存中对应键名的验证码

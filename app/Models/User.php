@@ -61,6 +61,7 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Reply::class);
     }
 
+    // 将消息标记为已读
     public function markAsRead()
     {
         $this->notification_count = 0;
